@@ -1,6 +1,6 @@
 require 'uri'
 require 'json' unless defined? ActiveSupport::JSON
-require 'mq'
+require 'amqp'
 require 'bunny'
 require 'minion/handler'
 
@@ -30,7 +30,7 @@ module Minion
 
 	def log(msg)
 		@@logger ||= proc { |m| puts "#{Time.now} :minion: #{m}" }
-		@@logger.call(msg)
+		@@logger.info(msg)
 	end
 
 	def error(&blk)
