@@ -30,7 +30,7 @@ module Minion
 
 	def log(msg)
 		@@logger ||= proc { |m| puts "#{Time.now} :minion: #{m}" }
-		@@logger.info(msg)
+		@@logger.call(msg)
 	end
 
 	def error(&blk)
